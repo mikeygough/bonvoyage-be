@@ -1,9 +1,16 @@
+# db/seeds.rb
+
+# --- Delete Existing Data ---
+puts "Deleting existing activities..."
+Activity.delete_all # Delete activities first due to foreign key constraint
 puts "Deleting existing trips..."
 Trip.delete_all
 
+# --- Create Trips ---
 puts "Creating new trips..."
 
-Trip.create!(
+# (Keep the Trip creation code from the previous step here)
+trip_paris = Trip.create!(
   title: "Romantic Getaway to Paris",
   description: "Explore the City of Lights, from the Eiffel Tower to the Louvre.",
   image_url: "https://example.com/images/paris.jpg",
@@ -12,7 +19,7 @@ Trip.create!(
   budget: 2500
 )
 
-Trip.create!(
+trip_tokyo = Trip.create!(
   title: "Tokyo Adventure",
   description: "Experience the vibrant culture, food, and technology of Japan's capital.",
   image_url: "https://example.com/images/tokyo.jpg",
@@ -21,7 +28,7 @@ Trip.create!(
   budget: 3500
 )
 
-Trip.create!(
+trip_costa_rica = Trip.create!(
   title: "Costa Rica Pura Vida",
   description: "Rainforest hikes, zip-lining adventures, and stunning Pacific beaches.",
   image_url: "https://example.com/images/costa_rica.jpg",
@@ -30,7 +37,7 @@ Trip.create!(
   budget: 1800
 )
 
-Trip.create!(
+trip_rome = Trip.create!(
   title: "Ancient Rome & Italian Cuisine",
   description: "Walk through history at the Colosseum and Forum, savoring pasta and gelato.",
   image_url: "https://example.com/images/rome.jpg",
@@ -39,7 +46,7 @@ Trip.create!(
   budget: 2200
 )
 
-Trip.create!(
+trip_banff = Trip.create!(
   title: "Canadian Rockies Explorer (Banff)",
   description: "Hiking amidst breathtaking mountains, turquoise lakes, and glaciers.",
   image_url: "https://example.com/images/banff.jpg",
@@ -48,7 +55,7 @@ Trip.create!(
   budget: 1500
 )
 
-Trip.create!(
+trip_nz = Trip.create!(
   title: "New Zealand South Island Road Trip",
   description: "Epic landscapes from Queenstown to Milford Sound, adventure sports, and scenic drives.",
   image_url: "https://example.com/images/new_zealand.jpg",
@@ -57,7 +64,7 @@ Trip.create!(
   budget: 4500
 )
 
-Trip.create!(
+trip_peru = Trip.create!(
   title: "Inca Trail to Machu Picchu",
   description: "A challenging but rewarding trek through the Andes to the lost city of the Incas.",
   image_url: "https://example.com/images/peru.jpg",
@@ -66,7 +73,7 @@ Trip.create!(
   budget: 2800
 )
 
-Trip.create!(
+trip_iceland = Trip.create!(
   title: "Iceland: Fire, Ice & Auroras",
   description: "Chase the Northern Lights, explore glaciers, geysers, waterfalls, and volcanic landscapes.",
   image_url: "https://example.com/images/iceland.jpg",
@@ -75,7 +82,7 @@ Trip.create!(
   budget: 3200
 )
 
-Trip.create!(
+trip_thailand = Trip.create!(
   title: "Thailand Escape: Bangkok & Phuket",
   description: "From bustling city markets and golden temples to relaxing on tropical beaches.",
   image_url: "https://example.com/images/thailand.jpg",
@@ -84,7 +91,7 @@ Trip.create!(
   budget: 1900
 )
 
-Trip.create!(
+trip_morocco = Trip.create!(
   title: "Colors of Morocco: Marrakech & Sahara",
   description: "Explore vibrant souks, ride camels into the desert sunset, and sleep under the stars.",
   image_url: "https://example.com/images/morocco.jpg",
@@ -94,3 +101,100 @@ Trip.create!(
 )
 
 puts "Finished creating #{Trip.count} trips."
+
+# --- Create Activities ---
+puts "Creating activities for trips..."
+
+trip_paris.activities.create!([
+  { name: "Eiffel Tower Summit Visit" },
+  { name: "Louvre Museum Guided Tour" },
+  { name: "Seine River Dinner Cruise" },
+  { name: "Explore Montmartre & Sacré-Cœur" },
+  { name: "French Baking Class (Croissants)" }
+])
+puts "  -> Added activities for Paris"
+
+trip_tokyo.activities.create!([
+  { name: "Cross the Shibuya Scramble" },
+  { name: "Visit Senso-ji Temple, Asakusa" },
+  { name: "Explore Harajuku Takeshita Street" },
+  { name: "TeamLab Borderless Digital Art Museum" },
+  { name: "Day trip Hakone (View Mt. Fuji)" }
+])
+puts "  -> Added activities for Tokyo"
+
+trip_costa_rica.activities.create!([
+  { name: "Monteverde Cloud Forest Zip-lining" },
+  { name: "Hike in Manuel Antonio National Park" },
+  { name: "Surfing Lesson in Jaco" },
+  { name: "Relax in Arenal Volcano Hot Springs" },
+  { name: "Visit a Local Coffee Plantation" }
+])
+puts "  -> Added activities for Costa Rica"
+
+trip_rome.activities.create!([
+  { name: "Colosseum & Roman Forum Tour" },
+  { name: "Vatican Museums & St. Peter's Basilica" },
+  { name: "Toss a coin in the Trevi Fountain" },
+  { name: "Pasta Making Workshop" },
+  { name: "Evening walk through Trastevere" }
+])
+puts "  -> Added activities for Rome"
+
+trip_banff.activities.create!([
+  { name: "Visit Lake Louise & Moraine Lake" },
+  { name: "Ride the Banff Gondola for Views" },
+  { name: "Hike Johnston Canyon Trail" },
+  { name: "Drive part of the Icefields Parkway" },
+  { name: "Canoe on Emerald Lake (nearby Yoho)" }
+])
+puts "  -> Added activities for Banff"
+
+trip_nz.activities.create!([
+  { name: "Adventure Activity in Queenstown (e.g., Bungee)" },
+  { name: "Cruise Milford Sound" },
+  { name: "Tour Hobbiton Movie Set" },
+  { name: "Hike Franz Josef Glacier Valley Walk" },
+  { name: "Stargazing Experience at Lake Tekapo" }
+])
+puts "  -> Added activities for New Zealand"
+
+trip_peru.activities.create!([
+  { name: "Guided Tour of Machu Picchu Citadel" },
+  { name: "Explore the Sacred Valley (Ollantaytambo/Pisac)" },
+  { name: "Walking Tour of Cusco Historical Center" },
+  { name: "Visit Sacsayhuamán ruins" },
+  { name: "Acclimatization Hike near Cusco" }
+])
+puts "  -> Added activities for Peru"
+
+trip_iceland.activities.create!([
+  { name: "Golden Circle Tour (Thingvellir, Geysir, Gullfoss)" },
+  { name: "Soak in the Blue Lagoon" },
+  { name: "South Coast Tour (Seljalandsfoss, Skógafoss, Reynisfjara)" },
+  { name: "Northern Lights Hunting Excursion (Winter)" },
+  { name: "Jökulsárlón Glacier Lagoon Visit" }
+])
+puts "  -> Added activities for Iceland"
+
+trip_thailand.activities.create!([
+  { name: "Visit Grand Palace & Wat Pho (Reclining Buddha)" },
+  { name: "Bangkok Canal Tour (Khlongs)" },
+  { name: "Ethical Elephant Sanctuary Visit" },
+  { name: "Island Hopping Boat Trip from Phuket (e.g., Phi Phi)" },
+  { name: "Experience a Floating Market" }
+])
+puts "  -> Added activities for Thailand"
+
+trip_morocco.activities.create!([
+  { name: "Explore Djemaa el-Fna & Marrakech Souks" },
+  { name: "Visit Jardin Majorelle & YSL Museum" },
+  { name: "Day Trip to the Atlas Mountains & Berber Villages" },
+  { name: "Overnight Camel Trek in Sahara Desert" },
+  { name: "Attend a Moroccan Cooking Class" }
+])
+puts "  -> Added activities for Morocco"
+
+
+puts "Finished creating activities. Total: #{Activity.count}"
+puts "Seeding complete!"
