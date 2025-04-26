@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: %i[ show update destroy ]
+  before_action :set_trip, only: %i[ show destroy ]
 
   # GET /trips
   def index
@@ -24,15 +24,6 @@ class TripsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /trips/1
-  def update
-    if @trip.update(trip_params)
-      render json: @trip
-    else
-      render json: @trip.errors, status: :unprocessable_entity
-    end
-  end
-
   # DELETE /trips/1
   def destroy
     @trip.destroy!
@@ -46,6 +37,6 @@ class TripsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def trip_params
-      params.expect(trip: [ :title, :description, :image_url, :start_date, :end_date, :budget ])
+      params.require(:trip).permit(:title, :description, :image_url, :start_date, :end_date, :budget)
     end
 end

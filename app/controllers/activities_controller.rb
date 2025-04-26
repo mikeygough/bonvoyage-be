@@ -1,10 +1,20 @@
 class ActivitiesController < ApplicationController
-  before_action :set_trip, only: %i[ index ]
+  before_action :set_trip, only: %i[ index create ]
 
   def index
     @activities = @trip.activities
 
     render json: @activities
+  end
+
+  def create
+    @activity = @trip.activities.build(activity_params)
+
+    if @activity.save
+      render json: @activity, status: :created, location: trip_activity_path(@trip, @activity)
+    else
+      render json: @activity.errors, status: :unprocessable_entity
+    end
   end
 
   private
